@@ -1557,7 +1557,6 @@ async def auto_filter(client, msg, spoll=False):
             ]
             for file in files
         ]
-    elelifif ENABLE_SHORTLINK and not settings["button"]:
     elif ENABLE_SHORTLINK and not settings["button"]:
         btn = [
             [
