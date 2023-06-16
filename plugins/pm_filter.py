@@ -114,7 +114,17 @@ async def next_page(bot, query):
             ]
             for file in files
         ]
-    elif ENABLE_SHORTLINK and not settings['button']:
+    elif query.from_user.id in LZURL_PRIME_USERS:
+         btn = [
+                 [
+                    InlineKeyboardButton(
+                       text=f"[{get_size(file.file_size)}] {file.file_name}", callback_data=f'files#{file.file_id}'
+                    ),
+                        ]
+                        for file in files
+                        ]
+#    else:
+      elif ENABLE_SHORTLINK and not settings['button']:
         btn = [
             [
                 InlineKeyboardButton(
@@ -127,6 +137,16 @@ async def next_page(bot, query):
             ]
             for file in files
         ]
+     elif query.from_user.id in LZURL_PRIME_USERS:
+         btn = [
+             [
+                InlineKeyboardButton(
+                     text=f"[{get_size(file.file_size)}] {file.file_name}", callback_data=f'files#{file.file_id}'
+                ),
+            ]
+            for file in files
+         ]
+  #  else:
     elif settings['button'] and not ENABLE_SHORTLINK:
         btn = [
             [
@@ -285,6 +305,16 @@ async def language_check(bot, query):
                 ]
                 for file in files
             ]
+       elif query.from_user.id in LZURL_PRIME_USERS:
+            btn = [
+                [
+                   InlineKeyboardButton(
+                         text=f"[{get_size(file.file_size)}] {file.file_name}", callback_data=f'files#{file.file_id}'
+                      ),
+                 ]
+                        for file in files
+                    ]
+            #    else:
         elif ENABLE_SHORTLINK and not settings['button']:
             btn = [
                 [
